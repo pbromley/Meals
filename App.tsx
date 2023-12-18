@@ -1,20 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { FC } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
+import Categories from "./screens/Categories";
+import MealsOverview from "./screens/MealsOverview";
 
-export default function App() {
+const Stack = createStackNavigator()
+
+const App: FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Meals Categories" component={Categories} />
+          <Stack.Screen name="Meals Overview" component={MealsOverview} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <StatusBar style="dark"/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
 });
+
+export default App;
